@@ -1,0 +1,23 @@
+{
+  "name": "alexa-jenkins-deployer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedroorez/alexa-jenkins-deployer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pedroorez/alexa-jenkins-deployer/issues"
+  },
+  "homepage": "https://github.com/pedroorez/alexa-jenkins-deployer#readme",
+  "dependencies": {
+    "alexa-sdk": "^1.0.25",
+    "axios": "^0.18.0"
+  }
+}
