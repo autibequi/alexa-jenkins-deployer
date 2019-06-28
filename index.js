@@ -1,6 +1,13 @@
 /* eslint-disable  func-names */
 /* eslint quote-props: ["error", "consistent"]*/
 
+//======================================================================
+// CONFIGURE THIS
+//======================================================================
+const APP_ID = "";
+const JENKINSTOKEN = "";
+const JOBNAME = "AlexaDeployer";
+
 'use strict';
 const Alexa = require('alexa-sdk');
 const Axios = require('axios');
@@ -11,17 +18,13 @@ const client = Axios.create({
 //======================================================================
 // AUX
 //======================================================================
-
-const APP_ID = "";
-const JENKINSTOKEN = ""
-
 const isValid = function (slots) {
     for (var key in slots) {
         if(slots[key]['value'] == undefined){
             return false
         }
     };
-    return true; 
+    return true;
 }
 
 //======================================================================
@@ -47,7 +50,7 @@ const handlers = {
 
         client.get('/buildWithParameters', {
             params: {
-                job: "AlexaDeployer",
+                job: JOBNAME,
                 token: JENKINSTOKEN,
                 BRANCH: this.event.request.intent.slots.STORY_ID.value,
                 TYPE: this.event.request.intent.slots.TYPE.resolutions.resolutionsPerAuthority[0].values[0].value.id,
@@ -58,14 +61,14 @@ const handlers = {
             console.log("HERE WE GO");
             console.log(data);
             this.response.speak(`All Done! Running a ${typetext} deploy of the story ${branchtext} on ${envtext}`);
-            this.emit(':responseReady');   
+            this.emit(':responseReady');
         })
         .catch((err) => {
             console.log("DEU RUIM");
             console.log(err.response);
-            
+
             this.response.speak("Sorry, Jenkins seems to be out of reach. That bastard.");
-            this.emit(':responseReady'); 
+            this.emit(':responseReady');
         })
     },
     'AMAZON.HelpIntent': function () {
